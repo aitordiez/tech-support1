@@ -24,12 +24,16 @@ public class InputReader
      * Modifica el método getInput para que devuelva la primera de las palabras
      * introducidas por el usuario
      */
-    public String getInput()
+    public HashSet<String> getInput()
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-        String[] array= inputLine.split(" ");
-        String primeraPalabra=array[0];
-        return primeraPalabra;
+        inputLine.length();
+        HashSet<String>words=new HashSet<>();
+        String[] array=inputLine.split(" ");
+        for(int i=0; i < array.length; i++){
+            words.add(array[i]);
+        }
+        return words;
     }
 }
