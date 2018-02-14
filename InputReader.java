@@ -21,16 +21,15 @@ public class InputReader
     }
 
     /**
-     * Read a line of text from standard input (the text terminal),
-     * and return it as a String.
-     *
-     * @return  A String typed by the user.
+     * Modifica el método getInput para que devuelva la primera de las palabras
+     * introducidas por el usuario
      */
     public String getInput()
     {
         System.out.print("> ");         // print prompt
         String inputLine = reader.nextLine();
-
-        return inputLine;
+        String[] array= inputLine.split(" ");
+        String primeraPalabra=array[0];
+        return primeraPalabra;
     }
 }
