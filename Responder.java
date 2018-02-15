@@ -14,7 +14,7 @@ public class Responder
 {
     private Random aleatorio;
     private ArrayList<String> respuestas;
-    private HashMap<String,String>respuestass;
+    private HashMap<HashSet<String>,String>respuestass;
     /**
      * Construct a Responder - nothing to do
      * Introducir una palabra 
@@ -24,17 +24,32 @@ public class Responder
         respuestas=new ArrayList<String>();
         aleatorio= new Random();
         respuestass=new HashMap<>();
-        
+
         respuestas.add("Podrias darme mas detalles del problema que tienes?");
         respuestas.add("De que marca es tu ordenador?");
         respuestas.add("Eso no es un error es una característica");
         respuestas.add("Que le ocurre al ordenador?");
         respuestas.add("Cual es tu sistema operativo?");
-        
-        respuestass.put("windows", "Fecha de la ultima actualizacion");
-        respuestass.put("internet", "Compruebe su router");
-        respuestass.put("wifi", "Compruebe su zona Wifi");
-        respuestass.put("proyector", "Compruebe la lampara del proyector");
+
+        HashSet<String> palabra1= new HashSet<>();
+        palabra1.add("free");
+        palabra1.add("app");
+
+        HashSet<String> palabra2= new HashSet<>();
+        palabra2.add("free");
+
+        HashSet<String> palabra3= new HashSet<>();
+        palabra3.add("app");
+
+        HashSet<String> palabra4= new HashSet<>();
+        palabra4.add("linux");
+        palabra4.add("problem");
+        palabra4.add("crash");
+
+        respuestass.put(palabra1, "Consulta nuestra app deportiva durante esta semana gratis");
+        respuestass.put(palabra2, "Podemos ofrecer un sistema operativo gratis");
+        respuestass.put(palabra3, "Descarga nuestra app");
+        respuestass.put(palabra4, "Problemas frecuentes de Linux");
     }
 
     /**
@@ -45,14 +60,7 @@ public class Responder
     public String generateResponse(HashSet<String> inputUser)
     {
         String response=null;
-        Iterator<String> iterador=inputUser.iterator();
-        boolean buscar=true;
-        while (iterador.hasNext() && buscar){
-        response=respuestass.get(iterador.next());    
-        if (response == null){
-            buscar=false;
-        }
-        }
+        response =respuestass.get(inputUser);
         if(response==null){
             response=respuestas.get(aleatorio.nextInt(respuestas.size()));
         }
