@@ -21,16 +21,10 @@ public class Responder
      */
     public Responder()
     {
-        respuestas=new ArrayList<String>();
         aleatorio= new Random();
         respuestass=new HashMap<>();
 
-        respuestas.add("Podrias darme mas detalles del problema que tienes?");
-        respuestas.add("De que marca es tu ordenador?");
-        respuestas.add("Eso no es un error es una característica");
-        respuestas.add("Que le ocurre al ordenador?");
-        respuestas.add("Cual es tu sistema operativo?");
-
+        respuestaPorDefecto();
         HashSet<String> palabra1= new HashSet<>();
         palabra1.add("free");
         palabra1.add("app");
@@ -62,8 +56,22 @@ public class Responder
         String response=null;
         response =respuestass.get(inputUser);
         if(response==null){
-            response=respuestas.get(aleatorio.nextInt(respuestas.size()));
+            if(respuestas.size() > 0){
+                response=respuestas.remove(aleatorio.nextInt(respuestas.size()));
+            }else{
+                System.out.println("No he entendido tu respuesta");
+            }
+            
         }
         return response;
+    }
+    
+    public void respuestaPorDefecto(){
+        respuestas=new ArrayList<String>();
+        respuestas.add("Podrias darme mas detalles del problema que tienes?");
+        respuestas.add("De que marca es tu ordenador?");
+        respuestas.add("Eso no es un error es una característica");
+        respuestas.add("Que le ocurre al ordenador?");
+        respuestas.add("Cual es tu sistema operativo?");
     }
 }
